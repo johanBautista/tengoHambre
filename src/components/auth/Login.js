@@ -11,18 +11,12 @@ const Boton = styled.button`
   width: 100%;
   background: #419d78;
   font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  border: none;
   color: #fff;
   margin: 3rem 0 3rem 0;
   padding: 1rem 2rem;
-  font-size: 2rem;
-  border-radius: 10px;
-  border: none;
   box-shadow: 0px 5px 9px -5px #000;
-  transition: background-size 1s ease;
-  &:hover {
-    background-size: 400px;
-    cursor: pointer;
-  }
 `;
 
 const Input = styled.input`
@@ -56,8 +50,6 @@ const Login = () => {
 
         <Boton type="button">Entra!</Boton>
       </Form>
-
-      
     </Contenedor>
   );
 };
