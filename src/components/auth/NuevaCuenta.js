@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const Contenedor = styled.div`
@@ -14,7 +15,6 @@ const Boton = styled.button`
   color: #fff;
   margin: 3rem 0 3rem 0;
   padding: 1rem 2rem;
-  font-size: 2rem;
   border-radius: 10px;
   border: none;
   box-shadow: 0px 5px 9px -5px #000;
@@ -48,15 +48,75 @@ const Form = styled.form`
 `;
 
 const NuevaCuenta = () => {
+  //state para iniciar sesion
+  const [usuario, guardarUsuario] = useState({
+    nombre: '',
+    telefono: '',
+    password: '',
+    confirmar: '',
+  });
+  
+  //extraer de usuario
+  const { nombre, telefono, password, confirmar } = usuario;
+
+  // obtener info
+  const onChange = (e) => {
+    guardarUsuario({
+      ...usuario,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // inicio de sesion
+  const onSubmit = (e) => {
+    e.preventDefault();
+    //validaciones
+    //pass min 6 
+    // passwords iguales
+    //pasar info action
+  };
+
   return (
     <Contenedor>
       <Titulo> Crea tu cuenta</Titulo>
-      <Form action="">
-        <Input type="text" placeholder="nombre" />
-        <Input type="text" placeholder="password" />
-
-        <Boton>Crear</Boton>
+      <Form onSubmit={onSubmit}>
+        <Input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+          value={nombre}
+          onChange={onChange}
+        />
+        <Input
+          type="number"
+          id="telefono"
+          name="telefono"
+          placeholder="Tu telefono"
+          value={telefono}
+          onChange={onChange}
+        />
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Tu password"
+          value={password}
+          onChange={onChange}
+        />
+        <Input
+          type="password"
+          id="confirmar"
+          name="confirmar"
+          placeholder="Repite tu password"
+          value={confirmar}
+          onChange={onChange}
+        />
+        <Boton>REGISTRARME</Boton>
       </Form>
+      <Link to={'/'} className="enlace-cuenta">
+        Iniciar Sesion
+      </Link>
     </Contenedor>
   );
 };

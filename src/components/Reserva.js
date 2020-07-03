@@ -14,7 +14,6 @@ const Boton = styled.button`
   color: #fff;
   margin: 3rem 0 3rem 0;
   padding: 1rem 2rem;
-  font-size: 2rem;
   border-radius: 10px;
   border: none;
   box-shadow: 0px 5px 9px -5px #000;
@@ -58,7 +57,7 @@ const Reserva = () => {
         <Input type="text" placeholder="Hora" />
         <Input type="text" placeholder="# Personas" />
         <Input type="text" placeholder="Evento" />
-        
+
         <Boton>Reservar</Boton>
       </Form>
     </Contenedor>

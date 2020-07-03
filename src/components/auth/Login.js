@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const Contenedor = styled.div`
@@ -40,16 +41,60 @@ const Form = styled.form`
   width: 80%;
   padding: 10px;
 `;
+
+//
 const Login = () => {
+  //state para iniciar sesion
+  const [usuario, guardarUsuario] = useState({
+    nombre: '',
+    password: '',
+  });
+
+  // obtener info
+  const onChange = (e) => {
+    guardarUsuario({
+      ...usuario,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  //extraer de usuario
+  const { nombre, password } = usuario;
+
+  // inicio de sesion
+  const onSubmit = (e) => {
+    e.preventDefault();
+    //validaciones
+    //pasar info action
+  };
+
   return (
     <Contenedor>
       <Titulo>Listo para una reserva?</Titulo>
-      <Form action="">
-        <Input type="text" placeholder="nombre" />
-        <Input type="text" placeholder="password" />
+      <Form onSubmit={onSubmit}>
+        <Input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+          value={nombre}
+          onChange={onChange}
+        />
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Tu password"
+          value={password}
+          onChange={onChange}
+        />
 
-        <Boton type="button">Entra!</Boton>
+        <Boton type="submit">ENTRAR</Boton>
       </Form>
+      
+      <Link to={'/nueva-cuenta'} className="enlace-cuenta">
+        Obtener Cuenta
+      </Link>
     </Contenedor>
   );
 };
