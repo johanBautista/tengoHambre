@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const Contenedor = styled.div`
@@ -47,19 +48,84 @@ const Form = styled.form`
 `;
 
 const Reserva = () => {
+  //state para iniciar sesion
+  const [reserva, guardarReserva] = useState({
+    nombre: '',
+    telefono: '',
+    fecha: '',
+    aforo: '',
+    evento: '',
+  });
+
+  //extraer de usuario
+  const { nombre, telefono, fecha, aforo, evento } = reserva;
+
+  // obtener info
+  const onChange = (e) => {
+    guardarReserva({
+      ...reserva,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // inicio de sesion
+  const onSubmit = (e) => {
+    e.preventDefault();
+    //validaciones
+    //pass min 6
+    //pasar info action
+  };
   return (
     <Contenedor>
       <Titulo>Realiza tu reserva</Titulo>
-      <Form action="">
-        <Input type="text" placeholder="Nombre" />
-        <Input type="text" placeholder="Telefono" />
-        <Input type="date" placeholder="Fecha" />
-        <Input type="text" placeholder="Hora" />
-        <Input type="text" placeholder="# Personas" />
-        <Input type="text" placeholder="Evento" />
+      <Form onSubmit={onSubmit}>
+        <Input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+          value={nombre}
+          onChange={onChange}
+        />
+        <Input
+          type="text"
+          id="phone"
+          name="telefono"
+          placeholder="movil"
+          value={telefono}
+          onChange={onChange}
+        />
+        <Input
+          type="datetime-local"
+          id="fecha"
+          name="fecha"
+          placeholder="Tu fecha"
+          value={fecha}
+          onChange={onChange}
+        />
+
+        <Input
+          type="number"
+          id="aforo"
+          name="aforo"
+          placeholder="# Personas"
+          value={aforo}
+          onChange={onChange}
+        />
+        <Input
+          type="text"
+          id="evento"
+          name="evento"
+          placeholder="Comer o Cenar"
+          value={evento}
+          onChange={onChange}
+        />
 
         <Boton>Reservar</Boton>
       </Form>
+      <Link to={'/'} className="enlace-cuenta">
+        Iniciar Sesion
+      </Link>
     </Contenedor>
   );
 };
