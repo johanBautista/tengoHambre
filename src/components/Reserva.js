@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const Contenedor = styled.div`
-  display: flex;
+  display: grid;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  height: 100px;
 `;
 
 const Boton = styled.button`
@@ -43,8 +44,14 @@ const Titulo = styled.h1`
 `;
 
 const Form = styled.form`
-  width: 80%;
-  padding: 10px;
+  padding: 20px;
+`;
+
+const Error = styled.div`
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 `;
 
 const Reserva = () => {
@@ -57,6 +64,7 @@ const Reserva = () => {
     evento: '',
   });
 
+  const [error, guardarError] = useState(false);
   //extraer de usuario
   const { nombre, telefono, fecha, aforo, evento } = reserva;
 
@@ -72,13 +80,25 @@ const Reserva = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //validaciones
-    //pass min 6
-    //pasar info action
+    if (
+      nombre.trim() === '' ||
+      telefono.trim() === '' ||
+      fecha.trim() === '' ||
+      aforo.trim() === '' ||
+      evento.trim() === ''
+    ) {
+      guardarError(true);
+      return;
+    }
+    guardarError(false);
   };
+
   return (
     <Contenedor>
       <Titulo>Realiza tu reserva</Titulo>
       <Form onSubmit={onSubmit}>
+        {error ? <Error>Todos los campos son obligatorios</Error> : null}
+
         <Input
           type="text"
           id="nombre"
@@ -121,7 +141,7 @@ const Reserva = () => {
           onChange={onChange}
         />
 
-        <Boton>Reservar</Boton>
+        <Boton type="submit">Reservar</Boton>
       </Form>
       <Link to={'/'} className="enlace-cuenta">
         Iniciar Sesion

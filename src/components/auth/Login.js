@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 const Contenedor = styled.div`
-  display: flex;
+  display: grid;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  height: 100px;
 `;
 
 const Boton = styled.button`
@@ -38,8 +39,7 @@ const Titulo = styled.h1`
 `;
 
 const Form = styled.form`
-  width: 80%;
-  padding: 10px;
+  padding: 20px;
 `;
 
 //
@@ -91,7 +91,7 @@ const Login = () => {
 
         <Boton type="submit">ENTRAR</Boton>
       </Form>
-      
+
       <Link to={'/nueva-cuenta'} className="enlace-cuenta">
         Obtener Cuenta
       </Link>

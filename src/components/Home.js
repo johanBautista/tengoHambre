@@ -9,6 +9,7 @@ const Titulo = styled.h4`
   color: #55514e;
   font-family: 'Raleway', sans-serif;
   padding: 20px;
+  display:block;
 `;
 
 const Home = () => {
