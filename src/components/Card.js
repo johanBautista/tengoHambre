@@ -27,7 +27,7 @@ const Reserva = styled.div`
 
 const Card = () => {
   return (
-    <Contenedor>
+    // <Contenedor>
       <Reserva>
         <div>
           <p>Maria Fernandez</p>
@@ -40,7 +40,7 @@ const Card = () => {
           <p>627 58 39 02</p>
         </div>
       </Reserva>
-    </Contenedor>
+    // </Contenedor>
   );
 };
 

@@ -48,7 +48,7 @@ const Form = styled.form`
 `;
 
 const Error = styled.div`
-  background-color: red;
+  background-color: #f45d52;
   color: white;
   padding: 1rem;
   text-align: center;
@@ -108,7 +108,7 @@ const Reserva = () => {
           onChange={onChange}
         />
         <Input
-          type="text"
+          type="number"
           id="phone"
           name="telefono"
           placeholder="movil"

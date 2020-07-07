@@ -47,6 +47,13 @@ const Form = styled.form`
   padding: 20px;
 `;
 
+const Error = styled.div`
+  background-color: #f45d52;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+`;
+
 const NuevaCuenta = () => {
   //state para iniciar sesion
   const [usuario, guardarUsuario] = useState({
@@ -55,7 +62,9 @@ const NuevaCuenta = () => {
     password: '',
     confirmar: '',
   });
-  
+
+  const [error, guardarError] = useState(false);
+
   //extraer de usuario
   const { nombre, telefono, password, confirmar } = usuario;
 
@@ -71,7 +80,16 @@ const NuevaCuenta = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //validaciones
-    //pass min 6 
+    if (
+      nombre.trim() === '' ||
+      telefono.trim() === '' ||
+      password.trim() === '' ||
+      confirmar.trim() === ''
+    ) {
+      guardarError(true);
+      return;
+    }
+    guardarError(false);
     // passwords iguales
     //pasar info action
   };
@@ -80,6 +98,8 @@ const NuevaCuenta = () => {
     <Contenedor>
       <Titulo> Crea tu cuenta</Titulo>
       <Form onSubmit={onSubmit}>
+        {error ? <Error>Todos los campos son obligatorios</Error> : null}
+
         <Input
           type="text"
           id="nombre"

@@ -42,6 +42,13 @@ const Form = styled.form`
   padding: 20px;
 `;
 
+const Error = styled.div`
+  background-color: #f45d52;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+`;
+
 //
 const Login = () => {
   //state para iniciar sesion
@@ -49,6 +56,8 @@ const Login = () => {
     nombre: '',
     password: '',
   });
+
+  const [error, guardarError] = useState(false);
 
   // obtener info
   const onChange = (e) => {
@@ -65,6 +74,11 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //validaciones
+    if (nombre.trim() === '' || password.trim() === '') {
+      guardarError(true);
+      return;
+    }
+    guardarError(false);
     //pasar info action
   };
 
@@ -72,6 +86,8 @@ const Login = () => {
     <Contenedor>
       <Titulo>Listo para una reserva?</Titulo>
       <Form onSubmit={onSubmit}>
+        {error ? <Error>Todos los campos son obligatorios</Error> : null}
+
         <Input
           type="text"
           id="nombre"
